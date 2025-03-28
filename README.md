@@ -12,18 +12,18 @@ Sistema e-commerce de TaletoTech &lt;PreEntrega>
 
 ```java
 public void agregarBebida(String nombre, double precio, int stock, String marca, double litros) {
-    if(existeIProducto(nombre, marca)) {
+    if(existeElProducto(nombre, marca)) {
         productobao.agregarBebida(nombre, precio, stock, marca, litros);
     }
 }
 
-public void agregarComida(String nombre, double precio, int stock, String marca, double grasaneta) {
-    if(existeIProducto(nombre, marca)) {
+public void agregarComida(String nombre, double precio, int stock, String marca, double grasaNeta) {
+    if(existeElProducto(nombre, marca)) {
         productobao.agregarComida(nombre, precio, stock, marca, grasaleta);
     }
 }
 
-private boolean existeIProducto(String nombre, String marca) {
+private boolean existeElProducto(String nombre, String marca) {
     if(buscarProductoPorNombreYMarca(nombre, marca) == null) {
         return true;
     }
