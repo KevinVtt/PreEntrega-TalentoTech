@@ -6,8 +6,9 @@ Sistema e-commerce de TaletoTech &lt;PreEntrega>
 - Aplique algunos conceptos **SOLID** como por ejemplo, clases abstractas para no repetir codigo.
 - Metodos estructurados, claros y concisos para ahorrarme los comentarios.
 - Los metodos de cada clase tienen una unica funcion esto quiere decir que, **_Un metodo no puede realizar dos cosas a la vez_**.
+- Estas prácticas las estoy realizando a medida que leo el libro "Código Limpio" de Robert C. Martin.
 	
-### Ejemplo de código:
+### Ejemplo de código (Funcionamiento de los metodos):
 
 ```java
 public void agregarBebida(String nombre, double precio, int stock, String marca, double litros) {
@@ -16,7 +17,7 @@ public void agregarBebida(String nombre, double precio, int stock, String marca,
     }
 }
 
-public void agregarComida(String nombre, double precio, int stock, String marca, double grasaleta) {
+public void agregarComida(String nombre, double precio, int stock, String marca, double grasaneta) {
     if(existeIProducto(nombre, marca)) {
         productobao.agregarComida(nombre, precio, stock, marca, grasaleta);
     }
