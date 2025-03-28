@@ -7,25 +7,26 @@ Sistema e-commerce de TaletoTech &lt;PreEntrega>
 - Metodos estructurados, claros y concisos para ahorrarme los comentarios.
 - Los metodos de cada clase tienen una unica funcion esto quiere decir que, **_Un metodo no puede realizar dos cosas a la vez_**.
 	
-### Ejemplo de codigo: 
+### Ejemplo de código:
 
-	```public void agregarBebida(String nombre, double precio, int stock, String marca, double litros){
-        if(existeElProducto(nombre,marca)){
-            productoDao.agregarBebida(nombre,precio,stock,marca,litros);
-        }
-    }```
+```java
+public void agregarBebida(String nombre, double precio, int stock, String marca, double litros) {
+    if(existeIProducto(nombre, marca)) {
+        productobao.agregarBebida(nombre, precio, stock, marca, litros);
+    }
+}
 
-    ```public void agregarComida(String nombre, double precio, int stock, String marca,double grasaNeta){
-        if(existeElProducto(nombre,marca)){
-            productoDao.agregarComida(nombre,precio,stock,marca,grasaNeta);
-        }
-    }```
-	
-    ```private boolean existeElProducto(String nombre, String marca){
-        if(buscarProductoPorNombreYMarca(nombre,marca) == null){
-            return true;
-        }
-        throw new ProductoYaExisteExcepcion("El producto ya existe!");
-    }```
+public void agregarComida(String nombre, double precio, int stock, String marca, double grasaleta) {
+    if(existeIProducto(nombre, marca)) {
+        productobao.agregarComida(nombre, precio, stock, marca, grasaleta);
+    }
+}
+
+private boolean existeIProducto(String nombre, String marca) {
+    if(buscarProductoPorNombreYMarca(nombre, marca) == null) {
+        return true;
+    }
+    throw new ProductoExistsException("El producto ya existe!");
+}
 	
 - Estas practicas las estoy realizando a medida que leo el libro de Codigo limpio de Robert C. Martin.
