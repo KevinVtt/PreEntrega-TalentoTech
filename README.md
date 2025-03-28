@@ -29,5 +29,3 @@ private boolean existeIProducto(String nombre, String marca) {
     }
     throw new ProductoExistsException("El producto ya existe!");
 }
-	
-- Estas practicas las estoy realizando a medida que leo el libro de Codigo limpio de Robert C. Martin.
