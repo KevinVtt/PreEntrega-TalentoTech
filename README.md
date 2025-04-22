@@ -1,5 +1,5 @@
 # PreEntrega-TalentoTech
-Sistema e-commerce de TaletoTech &lt;PreEntrega>
+Sistema e-commerce de TalentoTech &lt;PreEntrega>
 ---
 ## Tecnicas y practicas
 - Utilice buenas practicas para el desarrollo de este proyecto implementando **Polimorfismo, Encapsulamiento, Herencia, etc**.
