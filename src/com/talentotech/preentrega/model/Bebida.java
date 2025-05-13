@@ -30,8 +30,7 @@ public class Bebida extends Producto {
 
     @Override
     public String toString() {
-        return super.toString() + " Bebida {" +
-                "litros=" + litros +
-                '}';
+        return super.toString() + " === Tipo Bebida == " +
+                "litros" + litros;
     }
 }

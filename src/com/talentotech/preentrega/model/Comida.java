@@ -27,8 +27,7 @@ public class Comida extends Producto{
 
     @Override
     public String toString() {
-        return super.toString() + " Comida{" +
-                "grasaNeta='" + grasaNeta + '\'' +
-                '}';
+        return super.toString() + " == Tipo Comida == " +
+                "grasaNeta " + grasaNeta;
     }
 }
