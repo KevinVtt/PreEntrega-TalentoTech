@@ -64,7 +64,10 @@ public class MenuService {
 
     public void mostrarProducto(){
         System.out.println("Ingrese el id del producto que quieres buscar: ");
-        System.out.println(productoService.buscarProducto(scanner.nextLong()));
+        Long id = scanner.nextLong();
+        System.out.println(productoService.buscarProducto(id) != null ?
+                productoService.buscarProducto(id) :
+                "El producto no existe!! Intentenlo nuevamente");
     }
 
     public void menuParaActualizarProducto(){
@@ -75,42 +78,40 @@ public class MenuService {
             }
             for(Producto productoLista: productoService.listar()){
                 if(productoLista instanceof Bebida b){
-                    System.out.println(productoLista.getId()+")" + " nombre: " + productoLista.getNombre() + " precio: " + productoLista.getPrecio() + " stock: " + productoLista.getStock() + " marca: " + productoLista.getMarca() + " litros: " + b.getLitros());
+                    System.out.println(productoLista.getId()+")" + productoLista.getNombre() + " precio: " + productoLista.getPrecio() + " stock: " + productoLista.getStock() + " marca: " + productoLista.getMarca() + " litros: " + b.getLitros());
                 }else if(productoLista instanceof Comida c){
-                    System.out.println(productoLista.getId()+")" + " nombre: " + productoLista.getNombre() + " precio: " + productoLista.getPrecio() + " stock: " + productoLista.getStock() + " marca: " + productoLista.getMarca() + " grasa neta: " + c.getGrasaNeta());
+                    System.out.println(productoLista.getId()+")" + productoLista.getNombre() + " precio: " + productoLista.getPrecio() + " stock: " + productoLista.getStock() + " marca: " + productoLista.getMarca() + " grasa neta: " + c.getGrasaNeta());
                 }
                 System.out.println();
             }
             System.out.println("------------------------------------------------");
         System.out.println("Seleccione alguno para editar: ");
         Producto producto = productoService.buscarProducto(scanner.nextLong());
-        verificarTipoDeProducto(producto);
+//        verificarTipoDeProducto(producto);
+        actualizarProducto(producto);
         System.out.println("PRODUCTO EDITADO -->" + productoService.actualizarProducto(producto));
     }
 
     public void actualizarProducto(Producto producto){
 
-        scanner.nextLine();
-        System.out.println("Ingrese el nuevo nombre: ");
-        String nombreNuevo = scanner.nextLine();
-
-        System.out.println("Ingrese el nuevo precio: ");
-        double nuevoPrecio = scanner.nextDouble();
-
-        System.out.println("Ingrese el nuevo stock");
-        int stock = scanner.nextInt();
-        scanner.nextLine();
-
-        System.out.println("Ingrese la nueva marca");
-        String marca = scanner.nextLine();
-
-        producto.setNombre(nombreNuevo);
-        producto.setPrecio(nuevoPrecio);
-        producto.setStock(stock);
-        producto.setMarca(marca);
-
+        System.out.println("1) Editar Precio");
+        System.out.println("2) Editar Stock");
+        int opcion = scanner.nextInt();
+        switch (opcion){
+            case 1:
+                System.out.println("Ingrese el nuevo precio: ");
+                double nuevoPrecio = scanner.nextDouble();
+                producto.setPrecio(nuevoPrecio);
+                break;
+            case 2:
+                System.out.println("Ingrese el nuevo stock");
+                int stock = scanner.nextInt();
+                producto.setStock(stock);
+                break;
+        }
     }
 
+    // Se puede utilizar luego
     public void inputActualizarBebida(Bebida bebida){
 
         actualizarProducto(bebida);
@@ -121,6 +122,7 @@ public class MenuService {
         bebida.setLitros(litrosNuevo);
     }
 
+    // Se puede utilizar luego
     public void inputActualizarComida(Comida comida){
         actualizarProducto(comida);
 
@@ -169,13 +171,15 @@ public class MenuService {
     }
 
     private void verificarTipoDeProducto(Producto producto){
-        if(producto instanceof Comida comida){
-            inputActualizarComida(comida);
-        } else if (producto instanceof Bebida bebida) {
-            inputActualizarBebida(bebida);
-        }else{
-            throw new RuntimeException("El tipo de producto no existe");
-        }
+
+        // Verificacion del tipo de producto, utilizar si necesitamos modificar una opcion en general - Estado : Desahabilitado
+//        if(producto instanceof Comida comida){
+//            inputActualizarComida(comida);
+//        } else if (producto instanceof Bebida bebida) {
+//            inputActualizarBebida(bebida);
+//        }else{
+//            throw new RuntimeException("El tipo de producto no existe");
+//        }
     }
 
 }

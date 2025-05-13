@@ -8,6 +8,7 @@ import com.talentotech.preentrega.model.Producto;
 import com.talentotech.preentrega.model.Sistema;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class ProductoService {
 
@@ -24,7 +25,15 @@ public class ProductoService {
     }
 
     public void eliminarProducto(Long id){
-        productoDao.eliminarProducto(id);
+        System.out.println("Estas seguro que quieres eliminar el producto?");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese 'S' o 'N' ");
+        String verificarEliminacion = scanner.nextLine().toLowerCase();
+        if(verificarEliminacion.equals("s")){
+            productoDao.eliminarProducto(id);
+        }else{
+            System.out.println("El producto no fue eliminado! Gracias por confirmar");
+        }
     }
 
     public Producto buscarProducto(Long id){
