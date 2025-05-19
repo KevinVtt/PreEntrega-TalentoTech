@@ -1,6 +1,7 @@
 package com.talentotech.preentrega.service;
 
 import com.talentotech.preentrega.dao.ProductoDao;
+import com.talentotech.preentrega.excepciones.ProductoNuloExcepcion;
 import com.talentotech.preentrega.excepciones.ProductoYaExisteExcepcion;
 import com.talentotech.preentrega.model.Bebida;
 import com.talentotech.preentrega.model.Comida;
@@ -45,14 +46,19 @@ public class ProductoService {
     }
 
     public void agregarBebida(String nombre, double precio, int stock, String marca, double litros){
+
         if(existeElProducto(nombre,marca)){
             productoDao.agregarBebida(nombre,precio,stock,marca,litros);
+        }else{
+            throw new ProductoYaExisteExcepcion("El producto ya existe");
         }
     }
 
     public void agregarComida(String nombre, double precio, int stock, String marca,double grasaNeta){
         if(existeElProducto(nombre,marca)){
             productoDao.agregarComida(nombre,precio,stock,marca,grasaNeta);
+        }else{
+            throw new ProductoYaExisteExcepcion("El producto ya existe");
         }
     }
 
@@ -71,13 +77,12 @@ public class ProductoService {
     }
 
     private boolean existeElProducto(String nombre, String marca){
-        if(buscarProductoPorNombreYMarca(nombre,marca) == null){
-            return true;
-        }
-        throw new ProductoYaExisteExcepcion("El producto ya existe!");
+        return buscarProductoPorNombreYMarca(nombre,marca) == null;
     }
 
     public Sistema getSistema() {
         return sistema;
     }
+
+
 }
