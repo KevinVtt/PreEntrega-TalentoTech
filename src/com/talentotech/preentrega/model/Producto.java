@@ -1,5 +1,7 @@
 package com.talentotech.preentrega.model;
 
+import com.talentotech.preentrega.excepciones.ProductoNuloExcepcion;
+
 public abstract class Producto {
 
     protected Long id;
@@ -7,6 +9,7 @@ public abstract class Producto {
     protected Double precio;
     protected Integer stock;
     protected String marca;
+    protected StringBuilder errores = new StringBuilder();
 
     public Producto() {
     }
@@ -57,6 +60,21 @@ public abstract class Producto {
 
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    protected void verificarProductoNulo(String nombre, double precio, int stock, String marca){
+        if(nombre.isEmpty()){
+            errores.append(" nombre");
+        }
+        if (precio <= 0) {
+            errores.append(" precio");
+        }
+        if(stock <= 0){
+            errores.append(" stock");
+        }
+        if(marca.isEmpty()){
+            errores.append(" marca");
+        }
     }
 
     @Override

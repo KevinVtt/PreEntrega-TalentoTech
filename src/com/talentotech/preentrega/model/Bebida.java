@@ -1,5 +1,7 @@
 package com.talentotech.preentrega.model;
 
+import com.talentotech.preentrega.excepciones.ProductoNuloExcepcion;
+
 public class Bebida extends Producto {
 
     private double litros;
@@ -18,6 +20,7 @@ public class Bebida extends Producto {
     public Bebida(Long id, String nombre, Double precio, Integer stock, String marca, double litros) {
         super(id, nombre, precio, stock,marca);
         this.litros = litros;
+        verificarProductoNulo(nombre,precio,stock,marca,litros);
     }
 
     public double getLitros() {
@@ -28,9 +31,22 @@ public class Bebida extends Producto {
         this.litros = litros;
     }
 
+
     @Override
     public String toString() {
         return super.toString() + " === Tipo Bebida == " +
                 "litros" + litros;
     }
+
+    protected void verificarProductoNulo(String nombre, double precio, int stock, String marca,double litros) {
+        super.verificarProductoNulo(nombre, precio, stock, marca);
+        if(litros <= 0){
+            errores.append(" litros");
+        }
+        if(!errores.isEmpty()){
+            throw new ProductoNuloExcepcion("Los campos nulos son: " + errores.toString().strip().replace(" ",", "));
+        }
+    }
+
+
 }
