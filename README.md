@@ -11,21 +11,26 @@ Sistema e-commerce de TaletoTech &lt;PreEntrega>
 ### Ejemplo de código (Funcionamiento de los metodos):
 
 ```java
-public void agregarBebida(String nombre, double precio, int stock, String marca, double litros) {
-    if(existeElProducto(nombre, marca)) {
-        productobao.agregarBebida(nombre, precio, stock, marca, litros);
-    }
-}
+    public void agregarBebida(String nombre, double precio, int stock, String marca, double litros){
 
-public void agregarComida(String nombre, double precio, int stock, String marca, double grasaNeta) {
-    if(existeElProducto(nombre, marca)) {
-        productobao.agregarComida(nombre, precio, stock, marca, grasaleta);
+        if(existeElProducto(nombre,marca)){
+            productoDao.agregarBebida(nombre,precio,stock,marca,litros);
+        }else{
+            throw new ProductoYaExisteExcepcion("El producto ya existe");
+        }
     }
-}
 
-private boolean existeElProducto(String nombre, String marca) {
-    if(buscarProductoPorNombreYMarca(nombre, marca) == null) {
-        return true;
+    public void agregarComida(String nombre, double precio, int stock, String marca,double grasaNeta){
+        if(existeElProducto(nombre,marca)){
+            productoDao.agregarComida(nombre,precio,stock,marca,grasaNeta);
+        }else{
+            throw new ProductoYaExisteExcepcion("El producto ya existe");
+        }
     }
-    throw new ProductoExistsException("El producto ya existe!");
-}
+
+    private boolean existeElProducto(String nombre, String marca){
+        return buscarProductoPorNombreYMarca(nombre,marca) == null;
+    }
+
+```
+
